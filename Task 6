@@ -1,0 +1,12 @@
+with c as
+(
+Select row_number() over(ORDER BY date,name) num_1, name as n,date as d
+From battles
+)
+
+select num,name,date,num_2,n,d
+from(
+select num,name,date, lead(num,3) over(order by num) num_2
+from
+(Select row_number() over(ORDER BY date,name) num, name,date
+From battles)a)b inner join c on b.num_2=c.num_1
