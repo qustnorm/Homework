@@ -1,0 +1,5 @@
+SELECT DISTINCT TIMEDIFF(
+(SELECT end_pair FROM Timepair where id=4),
+(SELECT start_pair from Timepair where id = 2)
+) as time
+FROM Timepair
